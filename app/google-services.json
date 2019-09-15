@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "144003994072",
+    "firebase_url": "https://budayaku-6298f.firebaseio.com",
+    "project_id": "budayaku-6298f",
+    "storage_bucket": "budayaku-6298f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:144003994072:android:8b7396bfa0459e3db0a2ad",
+        "android_client_info": {
+          "package_name": "com.example.budayaku"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "144003994072-1e3c1qvhdsd5gje9b3k8rpln7sr1lkd2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.budayaku",
+            "certificate_hash": "e07145fbebac9224a0cbeea1fe743d82c5e637ef"
+          }
+        },
+        {
+          "client_id": "144003994072-sdlhok5k8fsoki7hoac28s7la8is217e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKTa0ff0Ig7H4GE0aEHimoJ6pVp0yLfkc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "144003994072-sdlhok5k8fsoki7hoac28s7la8is217e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/ic_home_green_24dp"
+        android:title="Home" />
+
+    <item
+        android:id="@+id/quest"
+        android:icon="@drawable/ic_bubble_chart_green_24dp"
+        android:title="Challenges" />
+
+    <item
+        android:id="@+id/forum"
+        android:icon="@drawable/ic_forum_green_24dp"
+        android:title="Forum Discussion" />
+
+    <item
+        android:id="@+id/account"
+        android:icon="@drawable/ic_account_circle_green_24dp"
+        android:title="Account" />
+</menu>
