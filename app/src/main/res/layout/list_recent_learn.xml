@@ -1,37 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="170dp"
+    android:layout_height="260dp"
     android:orientation="horizontal">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardList"
-        android:layout_width="match_parent"
+    <ImageButton
+        android:id="@+id/imgList"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/less_rounded_border"
+        android:elevation="9dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@drawable/background1" />
+
+    <TextView
+        android:id="@+id/listTitle"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="16dp">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <ImageButton
-                android:id="@+id/imgList"
-                android:layout_width="150dp"
-                android:layout_height="200dp"
-                tools:srcCompat="@drawable/background1" />
-
-            <TextView
-                android:id="@+id/listTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Java"
-                android:textStyle="bold" />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-</LinearLayout>
+        android:layout_gravity="center"
+        android:layout_marginTop="180dp"
+        android:background="@drawable/rounded_corner_accent"
+        android:elevation="10dp"
+        android:text="Java"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/imgList"
+        app:layout_constraintStart_toStartOf="@+id/imgList"
+        app:layout_constraintTop_toTopOf="@+id/imgList" />
+</androidx.constraintlayout.widget.ConstraintLayout>

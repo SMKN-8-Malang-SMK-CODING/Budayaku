@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.AccountNotFoundActivity">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/civ_photo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="150dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@android:color/darker_gray" />
+
+    <TextView
+        android:id="@+id/tv_accountNotFound1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Maaf, akun tidak terdeteksi."
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/civ_photo" />
+
+    <TextView
+        android:id="@+id/tv_accountNotFound2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:text="Silahkan Login "
+        app:layout_constraintStart_toStartOf="@+id/tv_accountNotFound1"
+        app:layout_constraintTop_toBottomOf="@+id/tv_accountNotFound1" />
+
+    <TextView
+        android:id="@+id/tv_linkLoginA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="disini"
+        android:textColor="@android:color/holo_blue_bright"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_accountNotFound2"
+        app:layout_constraintStart_toEndOf="@+id/tv_accountNotFound2"
+        app:layout_constraintTop_toTopOf="@+id/tv_accountNotFound2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

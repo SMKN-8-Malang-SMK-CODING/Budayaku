@@ -5,10 +5,9 @@
     android:layout_height="match_parent"
     tools:context=".fragments.QuestFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <fragment
+        android:id="@+id/frg_quest_holder"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Quest Fragment" />
+        android:layout_height="match_parent" />
 
 </FrameLayout>
