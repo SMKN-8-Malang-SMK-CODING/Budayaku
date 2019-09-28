@@ -2,6 +2,7 @@ package com.example.budayaku.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.budayaku.R
@@ -15,6 +16,11 @@ class UserRegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_register)
 
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        )
+
         val auth = FirebaseAuth.getInstance()
 
         val username = user_usname.text.toString()
@@ -24,17 +30,17 @@ class UserRegisterActivity : AppCompatActivity() {
 
         register_submit.setOnClickListener {
 
-            val user = User(username, "083845703072", email, password, location)
+            val user = User(username, "083845703072", email, location)
 
             // Add a new document with a generated ID
-            auth.createUserWithEmailAndPassword(user.email, user.password).addOnCompleteListener {
+            auth.createUserWithEmailAndPassword(user.email, password).addOnCompleteListener {
                 Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
             }.addOnFailureListener {
                 Toast.makeText(this, "Error ${it.message}", Toast.LENGTH_SHORT).show()
             }
         }
 
-        linkLoginR.setOnClickListener {
+        tv_linkLogin.setOnClickListener {
             val intent = Intent(this@UserRegisterActivity, UserLoginActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             startActivity(intent)

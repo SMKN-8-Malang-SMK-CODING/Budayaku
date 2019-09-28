@@ -13,7 +13,7 @@ object AuthHelper {
         if (currentUser == null) {
             val intent = Intent(context, UserLoginActivity::class.java)
 
-            intent.flags = (Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            intent.flags = (Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
 
             context.startActivity(intent)
 
@@ -28,7 +28,7 @@ object AuthHelper {
 
         val intent = Intent(context, UserLoginActivity::class.java)
 
-        intent.flags = (Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        intent.flags = (Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
 
         context.startActivity(intent)
     }

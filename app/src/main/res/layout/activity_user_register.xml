@@ -78,7 +78,7 @@
         app:layout_constraintTop_toBottomOf="@+id/user_location" />
 
     <TextView
-        android:id="@+id/linkLoginR"
+        android:id="@+id/tv_linkLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Login"
@@ -97,7 +97,7 @@
         android:background="@drawable/rounded_border"
         android:backgroundTint="@android:color/holo_blue_bright"
         android:elevation="10dp"
-        android:text="Register"
+        android:text="Sign Up"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

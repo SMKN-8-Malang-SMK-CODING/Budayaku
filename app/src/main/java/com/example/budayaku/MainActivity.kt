@@ -5,17 +5,11 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import com.example.budayaku.adapters.ViewPagerFragmentAdapter
-import com.example.budayaku.databases.User
 import com.example.budayaku.fragments.AccountFragment
 import com.example.budayaku.fragments.ForumFragment
 import com.example.budayaku.fragments.HomeFragment
 import com.example.budayaku.fragments.QuestFragment
-import com.example.budayaku.utils.AuthHelper
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_user_account.*
-import kotlinx.android.synthetic.main.fragment_account.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,24 +21,21 @@ class MainActivity : AppCompatActivity() {
 
         val fragmentAdapter = ViewPagerFragmentAdapter(supportFragmentManager)
 
-        val currentUser = FirebaseAuth.getInstance().currentUser
-
-        if (currentUser != null) {
-            FirebaseFirestore.getInstance().collection("users").document(currentUser.uid).get()
-                .addOnSuccessListener {
-                    val data: User? = it.toObject(User::class.java)
-                    user_usname.text = currentUser.email
-                }
-        }
+//        val currentUser = FirebaseAuth.getInstance().currentUser
+//
+//        if (currentUser != null) {
+//            FirebaseFirestore.getInstance().collection("users").document(currentUser.uid).get()
+//                .addOnSuccessListener {
+//                    val data: User? = it.toObject(User::class.java)
+//                    user_usname.text = currentUser.email
+//                    Toast.makeText(this, "name : ${data?.name}", Toast.LENGTH_LONG).show()
+//                }
+//        }
 
         fragmentAdapter.addFragment(HomeFragment())
         fragmentAdapter.addFragment(QuestFragment())
         fragmentAdapter.addFragment(ForumFragment())
         fragmentAdapter.addFragment(AccountFragment())
-
-        tv_userLogout.setOnClickListener {
-            AuthHelper.signOut(this)
-        }
 
         vp_container.apply {
             adapter = fragmentAdapter
@@ -96,7 +87,7 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    override fun onBackPressed() {
-        finish()
-    }
+//    override fun onBackPressed() {
+//        finish()
+//    }
 }
