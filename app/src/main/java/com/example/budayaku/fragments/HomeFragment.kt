@@ -2,7 +2,6 @@ package com.example.budayaku.fragments
 
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,8 +9,11 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.budayaku.R
 import com.example.budayaku.adapters.Adapter
-import com.example.budayaku.databases.Moduls
-import com.google.firebase.firestore.FirebaseFirestore
+import com.example.budayaku.adapters.ModulAdapter
+import com.example.budayaku.databases.Modul
+import com.example.budayaku.databases.ModulPopular
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_home.*
 
 /**
@@ -19,12 +21,16 @@ import kotlinx.android.synthetic.main.fragment_home.*
  */
 class HomeFragment : Fragment() {
 
+    private val firestore = Firebase.firestore
+
+    private lateinit var modulAdapter: ModulAdapter
+
     private val listModuls = arrayListOf(
-        Moduls("Reinforce"),
-        Moduls("BattleGuard"),
-        Moduls("Lostenheim"),
-        Moduls("Asterisk"),
-        Moduls("Comberly")
+        ModulPopular("Reinforce"),
+        ModulPopular("BattleGuard"),
+        ModulPopular("Lostenheim"),
+        ModulPopular("Asterisk"),
+        ModulPopular("Comberly")
     )
 
     override fun onCreateView(
@@ -37,6 +43,8 @@ class HomeFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        modulAdapter = ModulAdapter(this.context!!)
+
         recyclerView.apply {
             layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
             setHasFixedSize(true)
@@ -44,26 +52,22 @@ class HomeFragment : Fragment() {
             adapter = Adapter(listModuls)
         }
 
-        val db = FirebaseFirestore.getInstance()
 
-        val docRef = db.collection("materials").document("jatim")
-        docRef.get()
-            .addOnSuccessListener { document ->
-                if (document != null) {
-                    Log.d("exist", "DocumentSnapshot data: ${document.data}")
+        rv_itemModul.apply {
+            layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+            setHasFixedSize(true)
 
-                    tv_jatimTitle.text = document.getString("main_title")
-                    tv_jatimValue.text = document.getString("main_info")
-                    tv_jatengTitle.text = document.getString("rm_joglo")
-                    tv_jatengValue.text = document.getString("rm_joglo_info")
-                    tv_jabarTitle.text = document.getString("wp_clurit")
-                    tv_jabarValue.text = document.getString("wp_clurit_info")
-                } else {
-                    Log.d("notexist", "No such document")
-                }
-            }
-            .addOnFailureListener { exception ->
-                Log.d("errordb", "get failed with ", exception)
+            adapter = modulAdapter
+        }
+
+        loadModulData()
+    }
+
+    private fun loadModulData() {
+        firestore.collection("daerah").orderBy("id_daerah").get()
+            .addOnSuccessListener {
+                val daerah: List<Modul> = it.toObjects(Modul::class.java)
+                modulAdapter.setModul(daerah as ArrayList<Modul>)
             }
     }
 }

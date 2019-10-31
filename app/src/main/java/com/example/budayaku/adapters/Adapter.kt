@@ -5,10 +5,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.budayaku.R
-import com.example.budayaku.databases.Moduls
+import com.example.budayaku.databases.ModulPopular
 import kotlinx.android.synthetic.main.list_recent_learn.view.*
 
-class Adapter(private val list: ArrayList<Moduls>) : RecyclerView.Adapter<Adapter.Holder>() {
+class Adapter(private val list: ArrayList<ModulPopular>) : RecyclerView.Adapter<Adapter.Holder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         return Holder(
             LayoutInflater.from(parent.context).inflate(

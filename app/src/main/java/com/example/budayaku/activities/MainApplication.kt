@@ -3,7 +3,6 @@ package com.example.budayaku.activities
 import android.app.Application
 import android.content.Intent
 import android.widget.Toast
-import com.example.budayaku.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class MainApplication : Application() {
@@ -20,12 +19,13 @@ class MainApplication : Application() {
             val intent = Intent(this@MainApplication, UserLoginActivity::class.java)
 //            intent.flags = (Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
             startActivity(intent)
-        } else {
-            Toast.makeText(this, "MainApplication User ${currentUser.email}", Toast.LENGTH_LONG)
-                .show()
-            val intent = Intent(this@MainApplication, MainActivity::class.java)
-//            intent.flags = (Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-            startActivity(intent)
         }
+//        else {
+//            Toast.makeText(this, "MainApplication User ${currentUser.email}", Toast.LENGTH_LONG)
+//                .show()
+//            val intent = Intent(this@MainApplication, MainActivity::class.java)
+////            intent.flags = (Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+//            startActivity(intent)
+//        }
     }
 }

@@ -72,92 +72,14 @@
             app:layout_constraintStart_toEndOf="@+id/imgBudaya"
             app:layout_constraintTop_toTopOf="@+id/imgBudaya" />
 
-        <LinearLayout
-            android:id="@+id/jatim"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_itemModul"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_margin="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/less_rounded_border"
-            android:elevation="10dp"
-            android:gravity="bottom"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/jateng"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgBudaya">
-
-            <TextView
-                android:id="@+id/tv_jatimTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="16dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tv_jatimValue"
-                android:layout_width="match_parent"
-                android:layout_height="50dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/jateng"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_margin="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/less_rounded_border"
-            android:elevation="10dp"
-            android:gravity="bottom"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/jabar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:src="@android:color/darker_gray">
-
-            <TextView
-                android:id="@+id/tv_jatengTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="16dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tv_jatengValue"
-                android:layout_width="match_parent"
-                android:layout_height="50dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/jabar"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/less_rounded_border"
-            android:elevation="10dp"
-            android:gravity="bottom"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:src="@android:color/darker_gray">
-
-            <TextView
-                android:id="@+id/tv_jabarTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="16dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tv_jabarValue"
-                android:layout_width="match_parent"
-                android:layout_height="50dp" />
-        </LinearLayout>
+            app:layout_constraintTop_toBottomOf="@+id/budayaku" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
