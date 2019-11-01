@@ -52,12 +52,12 @@ class HomeFragment : Fragment() {
             adapter = Adapter(listModuls)
         }
 
-
         rv_itemModul.apply {
             layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
             setHasFixedSize(true)
 
             adapter = modulAdapter
+            isNestedScrollingEnabled = false
         }
 
         loadModulData()

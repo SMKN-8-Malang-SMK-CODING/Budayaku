@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import com.example.budayaku.R
 import com.example.budayaku.activities.AccountNotFoundActivity
 import com.example.budayaku.activities.UserAccountActivity
+import com.example.budayaku.activities.UserLoginActivity
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_account.*
 
@@ -44,8 +45,8 @@ class AccountFragment : Fragment() {
             if (currentUser != null) {
                 FirebaseAuth.getInstance().signOut()
                 Toast.makeText(context, "Logout Success", Toast.LENGTH_SHORT).show()
-//                val intent = Intent(activity, UserLoginActivity::class.java)
-//                startActivity(intent)
+                val intent = Intent(activity, UserLoginActivity::class.java)
+                startActivity(intent)
             } else {
                 Toast.makeText(context, "Account not detected", Toast.LENGTH_SHORT).show()
             }

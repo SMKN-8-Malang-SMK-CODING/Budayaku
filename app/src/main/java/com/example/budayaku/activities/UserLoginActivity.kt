@@ -50,26 +50,20 @@ class UserLoginActivity : AppCompatActivity() {
                     return@setOnClickListener
                 }
 
+                iv_background.visibility = View.VISIBLE
                 loading_login.visibility = View.VISIBLE
 
                 auth.signInWithEmailAndPassword(
                     email, password
                 ).addOnCompleteListener {
-                    //                val settings =
-//                    FirebaseFirestoreSettings.Builder().setPersistenceEnabled(true).build()
-//
-//                firestore.firestoreSettings = settings
-//                firestore.collection("user").document(FirebaseAuth.getInstance().currentUser?.uid!!)
-//                    .get()
-//                    .addOnSuccessListener {
                     if (!it.isSuccessful) {
                         Toast.makeText(this, "Nothing Happened", Toast.LENGTH_SHORT).show()
                         return@addOnCompleteListener
                     } else {
                         moveToHome()
                     }
-//                    }
                 }.addOnFailureListener {
+                    iv_background.visibility = View.GONE
                     loading_login.visibility = View.GONE
                     Toast.makeText(this, "Login Gagal ${it.message}", Toast.LENGTH_SHORT).show()
                 }
@@ -89,7 +83,6 @@ class UserLoginActivity : AppCompatActivity() {
         loading_login.visibility = View.GONE
         Toast.makeText(this, "Login Success ${auth.currentUser?.uid}\n", Toast.LENGTH_LONG).show()
         val intent = Intent(this, MainActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
         startActivity(intent)
     }
 }

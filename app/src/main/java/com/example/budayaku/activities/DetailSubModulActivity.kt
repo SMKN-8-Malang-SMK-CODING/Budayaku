@@ -46,5 +46,9 @@ class DetailSubModulActivity : AppCompatActivity() {
             .addOnFailureListener { exception ->
                 Log.d("errordb", "get failed with ", exception)
             }
+
+        iv_backDetail.setOnClickListener {
+            onBackPressed()
+        }
     }
 }

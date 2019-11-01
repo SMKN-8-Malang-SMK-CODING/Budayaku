@@ -41,6 +41,10 @@ class DetailModulActivity : AppCompatActivity() {
                 Log.d("errordb", "get failed with ", exception)
             }
 
+        iv_back.setOnClickListener {
+            onBackPressed()
+        }
+
         btn_senjata.setOnClickListener {
             val intent = Intent(this@DetailModulActivity, DetailSubModulActivity::class.java)
             intent.putExtra("jenis", "senjata")
