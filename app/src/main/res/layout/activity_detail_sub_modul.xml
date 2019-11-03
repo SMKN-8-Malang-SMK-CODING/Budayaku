@@ -4,13 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.DetailSubModulActivity">
+    tools:context=".activities.DetailSubModuleActivity">
+
+    <ProgressBar
+        android:id="@+id/loading_subModul"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:elevation="10dp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/civ_subModul"
+        android:id="@+id/civ_subModule"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginTop="32dp"
+        android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -21,11 +34,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="TextView"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/civ_subModul"
-        app:layout_constraintStart_toStartOf="@+id/civ_subModul"
-        app:layout_constraintTop_toBottomOf="@+id/civ_subModul" />
+        app:layout_constraintEnd_toEndOf="@+id/civ_subModule"
+        app:layout_constraintStart_toStartOf="@+id/civ_subModule"
+        app:layout_constraintTop_toBottomOf="@+id/civ_subModule" />
 
     <TextView
         android:id="@+id/tv_infoSubModul"
@@ -34,7 +46,6 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
-        android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_titleSubModul" />
@@ -54,7 +65,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:background="@drawable/ic_arrow_back_accent_36dp"
+        android:background="@drawable/ic_navigate_before_grey_36dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

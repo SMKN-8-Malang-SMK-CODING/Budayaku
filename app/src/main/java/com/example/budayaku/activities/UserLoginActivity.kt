@@ -80,9 +80,11 @@ class UserLoginActivity : AppCompatActivity() {
     }
 
     private fun moveToHome() {
+        iv_background.visibility = View.GONE
         loading_login.visibility = View.GONE
         Toast.makeText(this, "Login Success ${auth.currentUser?.uid}\n", Toast.LENGTH_LONG).show()
         val intent = Intent(this, MainActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(intent)
     }
 }

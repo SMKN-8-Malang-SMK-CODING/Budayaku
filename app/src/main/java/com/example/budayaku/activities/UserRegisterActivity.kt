@@ -6,7 +6,7 @@ import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.budayaku.R
-import com.example.budayaku.databases.User
+import com.example.budayaku.databases.SignUp
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_user_register.*
 
@@ -26,14 +26,13 @@ class UserRegisterActivity : AppCompatActivity() {
         val username = user_usname.text.toString()
         val email = user_email.text.toString()
         val password = user_password.text.toString()
-        val location = user_location.text.toString()
 
         register_submit.setOnClickListener {
 
-            val user = User(username, "083845703072", email, location)
+            val user = SignUp(username, email, password)
 
             // Add a new document with a generated ID
-            auth.createUserWithEmailAndPassword(user.email, password).addOnCompleteListener {
+            auth.createUserWithEmailAndPassword(user.email, user.password).addOnCompleteListener {
                 Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
             }.addOnFailureListener {
                 Toast.makeText(this, "Error ${it.message}", Toast.LENGTH_SHORT).show()

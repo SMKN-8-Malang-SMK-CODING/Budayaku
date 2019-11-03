@@ -9,9 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.budayaku.R
 import com.example.budayaku.adapters.Adapter
-import com.example.budayaku.adapters.ModulAdapter
-import com.example.budayaku.databases.Modul
+import com.example.budayaku.adapters.ModuleAdapter
 import com.example.budayaku.databases.ModulPopular
+import com.example.budayaku.databases.Module
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -23,7 +23,7 @@ class HomeFragment : Fragment() {
 
     private val firestore = Firebase.firestore
 
-    private lateinit var modulAdapter: ModulAdapter
+    private lateinit var moduleAdapter: ModuleAdapter
 
     private val listModuls = arrayListOf(
         ModulPopular("Reinforce"),
@@ -43,7 +43,7 @@ class HomeFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        modulAdapter = ModulAdapter(this.context!!)
+        moduleAdapter = ModuleAdapter(this.context!!)
 
         recyclerView.apply {
             layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
@@ -56,18 +56,19 @@ class HomeFragment : Fragment() {
             layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
             setHasFixedSize(true)
 
-            adapter = modulAdapter
+            adapter = moduleAdapter
             isNestedScrollingEnabled = false
         }
 
-        loadModulData()
+        loadModuleData()
     }
 
-    private fun loadModulData() {
+    private fun loadModuleData() {
         firestore.collection("daerah").orderBy("id_daerah").get()
             .addOnSuccessListener {
-                val daerah: List<Modul> = it.toObjects(Modul::class.java)
-                modulAdapter.setModul(daerah as ArrayList<Modul>)
+                val daerah: List<Module> = it.toObjects(Module::class.java)
+                moduleAdapter.setModul(daerah as ArrayList<Module>)
+                loading_modul.visibility = View.GONE
             }
     }
 }

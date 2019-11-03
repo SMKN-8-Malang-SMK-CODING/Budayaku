@@ -55,27 +55,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/user_email" />
 
-    <EditText
-        android:id="@+id/user_location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="location"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user_password" />
-
     <TextView
         android:id="@+id/tv_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:text="Sudah punya akun ?"
-        app:layout_constraintEnd_toEndOf="@+id/user_location"
-        app:layout_constraintStart_toStartOf="@+id/user_location"
-        app:layout_constraintTop_toBottomOf="@+id/user_location" />
+        app:layout_constraintEnd_toEndOf="@+id/user_password"
+        app:layout_constraintStart_toStartOf="@+id/user_password"
+        app:layout_constraintTop_toBottomOf="@+id/user_password" />
 
     <TextView
         android:id="@+id/tv_linkLogin"

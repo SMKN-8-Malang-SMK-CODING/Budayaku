@@ -14,10 +14,10 @@
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <activity
-            android:name=".activities.DetailSubModulActivity"
+            android:name=".activities.DetailSubModuleActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.DetailModulActivity"
+            android:name=".activities.DetailModuleActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activities.AccountNotFoundActivity"

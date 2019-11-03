@@ -9,13 +9,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.budayaku.R
-import com.example.budayaku.activities.DetailModulActivity
-import com.example.budayaku.databases.Modul
+import com.example.budayaku.activities.DetailModuleActivity
+import com.example.budayaku.databases.Module
 import kotlinx.android.synthetic.main.list_modul.view.*
 
-class ModulAdapter(private val context: Context) : RecyclerView.Adapter<ModulAdapter.Holder>() {
+class ModuleAdapter(private val context: Context) : RecyclerView.Adapter<ModuleAdapter.Holder>() {
 
-    private val list = ArrayList<Modul>()
+    private val list = ArrayList<Module>()
 
     class Holder(val view: View) : RecyclerView.ViewHolder(view)
 
@@ -40,15 +40,15 @@ class ModulAdapter(private val context: Context) : RecyclerView.Adapter<ModulAda
             .into(holder.itemView.bg_modul)
 
         holder.itemView.setOnClickListener {
-            val intent = Intent(context, DetailModulActivity::class.java)
+            val intent = Intent(context, DetailModuleActivity::class.java)
             intent.putExtra("id_daerah", list[position].id_daerah)
             context.startActivity(intent)
         }
     }
 
-    fun setModul(modul: ArrayList<Modul>) {
+    fun setModul(module: ArrayList<Module>) {
         this.list.clear()
-        this.list.addAll(modul)
+        this.list.addAll(module)
         notifyDataSetChanged()
     }
 }
