@@ -13,7 +13,7 @@ class AccountNotFoundActivity : AppCompatActivity() {
         setContentView(R.layout.activity_account_not_found)
 
         tv_linkLoginA.setOnClickListener {
-            startActivity(Intent(this@AccountNotFoundActivity, UserLoginActivity::class.java))
+            startActivity(Intent(this@AccountNotFoundActivity, LoginActivity::class.java))
         }
     }
 }

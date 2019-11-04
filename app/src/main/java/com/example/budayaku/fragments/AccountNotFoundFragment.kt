@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.budayaku.R
-import com.example.budayaku.activities.UserLoginActivity
+import com.example.budayaku.activities.LoginActivity
 import kotlinx.android.synthetic.main.fragment_account_not_found.*
 
 /**
@@ -27,7 +27,7 @@ class AccountNotFoundFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         tv_linkLoginF!!.setOnClickListener {
-            startActivity(Intent(activity, UserLoginActivity::class.java))
+            startActivity(Intent(activity, LoginActivity::class.java))
         }
     }
 

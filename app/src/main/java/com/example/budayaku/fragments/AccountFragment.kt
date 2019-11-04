@@ -12,9 +12,9 @@ import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.budayaku.R
+import com.example.budayaku.activities.AccountActivity
 import com.example.budayaku.activities.AccountNotFoundActivity
-import com.example.budayaku.activities.UserAccountActivity
-import com.example.budayaku.activities.UserLoginActivity
+import com.example.budayaku.activities.LoginActivity
 import com.example.budayaku.databases.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -42,7 +42,7 @@ class AccountFragment : Fragment() {
             FirebaseFirestore.getInstance().collection("users").document(currentUser.uid).get()
                 .addOnSuccessListener {
                     val data: User? = it.toObject(User::class.java)
-                    tv_userAccount.text = data?.name
+                    tv_userAccount.text = currentUser.displayName
                     tv_userLocation.text = data?.location
                     Glide.with(this).load(data?.user_avatar)
                         .apply(RequestOptions())
@@ -52,7 +52,7 @@ class AccountFragment : Fragment() {
 
         show_user.setOnClickListener {
             if (currentUser != null) {
-                startActivity(Intent(activity, UserAccountActivity::class.java))
+                startActivity(Intent(activity, AccountActivity::class.java))
             } else {
                 startActivity(Intent(activity, AccountNotFoundActivity::class.java))
             }
@@ -65,7 +65,7 @@ class AccountFragment : Fragment() {
             builder.setPositiveButton("Ya") { _, _ ->
                 if (currentUser != null) {
                     FirebaseAuth.getInstance().signOut()
-                    val intent = Intent(activity, UserLoginActivity::class.java)
+                    val intent = Intent(activity, LoginActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
                     startActivity(intent)
                     activity?.finish()

@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.budayaku.R
-import com.example.budayaku.activities.UserLoginActivity
+import com.example.budayaku.activities.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.fragment_account_not_found.*
@@ -39,7 +39,7 @@ class ForumFragment : Fragment() {
 
         if (currentUser == null) {
             tv_linkLoginF!!.setOnClickListener {
-                startActivity(Intent(activity, UserLoginActivity::class.java))
+                startActivity(Intent(activity, LoginActivity::class.java))
             }
         } else {
             //TODO any activities when user not null

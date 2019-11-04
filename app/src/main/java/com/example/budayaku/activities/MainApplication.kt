@@ -16,7 +16,7 @@ class MainApplication : Application() {
 
         if (currentUser == null) {
             Toast.makeText(this, "MainApplication User Null", Toast.LENGTH_LONG).show()
-            val intent = Intent(this@MainApplication, UserLoginActivity::class.java)
+            val intent = Intent(this@MainApplication, LoginActivity::class.java)
 //            intent.flags = (Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
             startActivity(intent)
         }

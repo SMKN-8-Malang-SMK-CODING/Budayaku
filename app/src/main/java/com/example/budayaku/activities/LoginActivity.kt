@@ -11,10 +11,10 @@ import com.example.budayaku.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.activity_user_login.*
+import kotlinx.android.synthetic.main.activity_login.*
 
 
-class UserLoginActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
 
     private val auth = FirebaseAuth.getInstance()
     private val firestore = FirebaseFirestore.getInstance()
@@ -22,7 +22,7 @@ class UserLoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_user_login)
+        setContentView(R.layout.activity_login)
 
         window.setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -74,7 +74,7 @@ class UserLoginActivity : AppCompatActivity() {
             }
 
             tv_linkRegister.setOnClickListener {
-                startActivity(Intent(this@UserLoginActivity, UserRegisterActivity::class.java))
+                startActivity(Intent(this@LoginActivity, RegisterActivity::class.java))
             }
         }
     }
@@ -86,5 +86,6 @@ class UserLoginActivity : AppCompatActivity() {
         val intent = Intent(this, MainActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(intent)
+        finish()
     }
 }

@@ -23,13 +23,13 @@
             android:name=".activities.AccountNotFoundActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.UserAccountActivity"
+            android:name=".activities.AccountActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.UserRegisterActivity"
+            android:name=".activities.RegisterActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.UserLoginActivity"
+            android:name=".activities.LoginActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
