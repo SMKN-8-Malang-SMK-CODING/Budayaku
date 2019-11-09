@@ -13,6 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+        <activity android:name=".activities.AddDataForumActivity"></activity>
         <activity
             android:name=".activities.DetailSubModuleActivity"
             android:screenOrientation="portrait" />
@@ -41,4 +42,5 @@
             </intent-filter>
         </activity>
     </application>
+
 </manifest>
