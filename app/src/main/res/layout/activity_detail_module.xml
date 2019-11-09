@@ -38,12 +38,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            android:textColor="@android:color/white"
+            android:textColor="@color/colorAccent"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/bg_detailModul"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bg_detailModul" />
 
         <TextView
             android:id="@+id/tv_modulDetail"
@@ -54,7 +53,7 @@
             android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bg_detailModul" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_modulTitle" />
 
         <Button
             android:id="@+id/btn_senjata"

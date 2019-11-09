@@ -9,10 +9,12 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.budayaku.R
 import com.example.budayaku.adapters.ItemSubModuleAdapter
+import com.example.budayaku.databases.ListItemSubModule
 import com.example.budayaku.databases.SubModuleItem
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import jp.wasabeef.glide.transformations.BlurTransformation
 import kotlinx.android.synthetic.main.activity_detail_sub_modul.*
 
 class DetailSubModuleActivity : AppCompatActivity() {
@@ -33,14 +35,17 @@ class DetailSubModuleActivity : AppCompatActivity() {
         docRef.get()
             .addOnSuccessListener {
 
-                val data = it.toObjects(SubModuleItem::class.java)
+                val data = it.toObjects(ListItemSubModule::class.java)
 
                 data.forEach { document ->
 
                     if (document != null) {
                         loading_subModul.visibility = View.GONE
-                        tv_titleSubModul.text = document.name
-                        tv_infoSubModul.text = document.info
+                        tv_titleSubModule.text = document.name
+                        tv_infoSubModule.text = document.info
+                        Glide.with(this).load(document.image_url)
+                            .apply(RequestOptions.bitmapTransform(BlurTransformation(10, 3)))
+                            .into(iv_backgroundSubModule)
                         Glide.with(this).load(document.image_url)
                             .apply(RequestOptions())
                             .into(civ_subModule)
@@ -60,7 +65,7 @@ class DetailSubModuleActivity : AppCompatActivity() {
 
         itemSubModuleAdapter = ItemSubModuleAdapter(this)
 
-        rv_itemSubModul.apply {
+        rv_itemSubModule.apply {
             layoutManager = LinearLayoutManager(
                 this@DetailSubModuleActivity,
                 LinearLayoutManager.HORIZONTAL,

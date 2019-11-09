@@ -2,6 +2,7 @@ package com.example.budayaku.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -28,6 +29,9 @@ class RegisterActivity : AppCompatActivity() {
             val email = user_email.text.toString()
             val password = user_password.text.toString()
 
+            reg_block.visibility = View.VISIBLE
+            reg_load.visibility = View.VISIBLE
+
 //          Add a new document with a generated ID
             auth.createUserWithEmailAndPassword(email, password).addOnSuccessListener {
                 Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
@@ -41,6 +45,8 @@ class RegisterActivity : AppCompatActivity() {
                     currentUser?.updateProfile(profileUpdate)
                         ?.addOnSuccessListener {
                             Toast.makeText(this, "User profile updated", Toast.LENGTH_SHORT).show()
+                            reg_block.visibility = View.GONE
+                            reg_load.visibility = View.GONE
                             val intent = Intent(this, LoginActivity::class.java)
                             intent.flags =
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK

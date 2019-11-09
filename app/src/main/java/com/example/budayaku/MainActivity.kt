@@ -21,17 +21,6 @@ class MainActivity : AppCompatActivity() {
 
         val fragmentAdapter = ViewPagerFragmentAdapter(supportFragmentManager)
 
-//        val currentUser = FirebaseAuth.getInstance().currentUser
-//
-//        if (currentUser != null) {
-//            FirebaseFirestore.getInstance().collection("users").document(currentUser.uid).get()
-//                .addOnSuccessListener {
-//                    val data: User? = it.toObject(User::class.java)
-//                    user_usname.text = currentUser.email
-//                    Toast.makeText(this, "name : ${data?.name}", Toast.LENGTH_LONG).show()
-//                }
-//        }
-
         fragmentAdapter.addFragment(HomeFragment())
         fragmentAdapter.addFragment(QuestFragment())
         fragmentAdapter.addFragment(ForumFragment())

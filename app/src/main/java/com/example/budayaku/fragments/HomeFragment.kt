@@ -26,11 +26,11 @@ class HomeFragment : Fragment() {
     private lateinit var moduleAdapter: ModuleAdapter
 
     private val listModuls = arrayListOf(
-        ModulPopular("Reinforce"),
-        ModulPopular("BattleGuard"),
-        ModulPopular("Lostenheim"),
-        ModulPopular("Asterisk"),
-        ModulPopular("Comberly")
+        ModulPopular("Jawa Timur"),
+        ModulPopular("Yogyakarta"),
+        ModulPopular("Jakarta"),
+        ModulPopular("Bali"),
+        ModulPopular("Banten")
     )
 
     override fun onCreateView(

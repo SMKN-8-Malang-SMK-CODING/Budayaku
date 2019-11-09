@@ -18,8 +18,61 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/iv_backgroundSubModule"
+        android:layout_width="0dp"
+        android:layout_height="180dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@android:color/darker_gray" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/item_detail_photo_container"
+        android:layout_width="150dp"
+        android:layout_height="180dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="90dp"
+        android:adjustViewBounds="true"
+        android:elevation="20dp"
+        app:cardCornerRadius="6dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/civ_subModule"
+            android:layout_width="150dp"
+            android:layout_height="180dp"
+            android:scaleType="centerCrop"
+            tools:src="@android:color/holo_blue_bright" />
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/tv_titleSubModule"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="64dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/item_detail_photo_container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/item_detail_photo_container"
+        app:layout_constraintTop_toTopOf="@+id/item_detail_photo_container" />
+
+    <TextView
+        android:id="@+id/tv_infoSubModule"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item_detail_photo_container" />
+
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/civ_subModule"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginTop="32dp"
@@ -29,35 +82,14 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:background="@android:color/darker_gray" />
 
-    <TextView
-        android:id="@+id/tv_titleSubModul"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/civ_subModule"
-        app:layout_constraintStart_toStartOf="@+id/civ_subModule"
-        app:layout_constraintTop_toBottomOf="@+id/civ_subModule" />
-
-    <TextView
-        android:id="@+id/tv_infoSubModul"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_titleSubModul" />
-
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_itemSubModul"
+        android:id="@+id/rv_itemSubModule"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_infoSubModul" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_infoSubModule" />
 
     <ImageView
         android:id="@+id/iv_backDetail"
