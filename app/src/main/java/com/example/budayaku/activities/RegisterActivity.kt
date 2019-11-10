@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.budayaku.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : AppCompatActivity() {
@@ -23,6 +25,7 @@ class RegisterActivity : AppCompatActivity() {
         )
 
         val auth = FirebaseAuth.getInstance()
+        val firestore = Firebase.firestore
 
         register_submit.setOnClickListener {
             val username = user_usname.text.toString()
@@ -39,11 +42,16 @@ class RegisterActivity : AppCompatActivity() {
                 auth.signInWithEmailAndPassword(email, password).addOnSuccessListener {
                     val currentUser = auth.currentUser
 
+                    val pic =
+                        hashMapOf("user_avatar" to "https://firebasestorage.googleapis.com/v0/b/budayaku-6298f.appspot.com/o/User%2Fdefault-profile.png?alt=media&token=06808e07-8e24-467c-9c91-0fd85f54b3e4")
+
+                    firestore.collection("users").document(currentUser!!.uid).set(pic)
+
                     val profileUpdate =
                         UserProfileChangeRequest.Builder().setDisplayName(username).build()
 
-                    currentUser?.updateProfile(profileUpdate)
-                        ?.addOnSuccessListener {
+                    currentUser.updateProfile(profileUpdate)
+                        .addOnSuccessListener {
                             Toast.makeText(this, "User profile updated", Toast.LENGTH_SHORT).show()
                             reg_block.visibility = View.GONE
                             reg_load.visibility = View.GONE

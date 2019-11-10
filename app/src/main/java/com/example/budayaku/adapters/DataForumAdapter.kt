@@ -32,16 +32,18 @@ class DataForumAdapter(private val context: Context) :
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         holder.itemView.tv_forumUsername.text = list[position].username
-        holder.itemView.tv_forumDeskripsi.text = list[position].topik
+        holder.itemView.tv_forumTopik.text = list[position].topik
 
         Glide.with(context).load(list[position].user_avatar)
             .apply(RequestOptions())
             .into(holder.itemView.civ_user)
 
         var date = ""
+        val year = list[position].timestamp?.year.toString()
+
         date += list[position].timestamp?.date.toString() + "/"
         date += list[position].timestamp?.month.toString() + "/"
-        date += list[position].timestamp?.year.toString()
+        date += year.substring(year.length - 2)
 
         holder.itemView.tv_forumDate.text = date
     }
