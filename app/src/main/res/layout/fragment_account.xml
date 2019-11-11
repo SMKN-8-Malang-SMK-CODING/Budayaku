@@ -5,8 +5,6 @@
     android:layout_height="match_parent"
     tools:context=".fragments.AccountFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -38,7 +36,6 @@
                     android:fontFamily="@font/open_sans_extrabold"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
-                    android:text="Anonymous"
                     android:textSize="20sp" />
 
                 <TextView
@@ -56,7 +53,7 @@
             android:id="@+id/tv_userLogout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/open_sans_light"
+            android:fontFamily="@font/open_sans_semibold"
             android:paddingTop="4dp"
             android:paddingBottom="4dp"
             android:text="Logout"

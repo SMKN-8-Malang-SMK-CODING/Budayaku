@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.example.budayaku.R
 import com.example.budayaku.activities.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -38,6 +40,13 @@ class QuestFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         if (currentUser == null) {
+            val notFound =
+                "https://firebasestorage.googleapis.com/v0/b/budayaku-6298f.appspot.com/o/9-93669_pictures-of-questions-marks-png-image-blue-question.png?alt=media&token=83f74b0f-d9b0-4000-a0ae-1b84767de13f"
+
+            Glide.with(this).load(notFound)
+                .apply(RequestOptions())
+                .into(civ_notFound)
+
             tv_linkLoginF!!.setOnClickListener {
                 startActivity(Intent(activity, LoginActivity::class.java))
             }
