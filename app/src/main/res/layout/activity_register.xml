@@ -85,7 +85,9 @@
         android:background="@drawable/rounded_border"
         android:backgroundTint="@android:color/holo_blue_bright"
         android:elevation="10dp"
+        android:fontFamily="@font/open_sans_semibold"
         android:text="Sign Up"
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

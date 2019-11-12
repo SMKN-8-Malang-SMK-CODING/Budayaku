@@ -28,10 +28,10 @@ class AccountActivity : AppCompatActivity() {
                     user_phone.text = data?.phone
                     user_email.text = currentUser.email
                     user_location.text = data?.location
-                    Glide.with(this).load(data?.user_avatar)
+                    Glide.with(this).load(currentUser.photoUrl)
                         .apply(RequestOptions())
                         .into(civ_userPhoto)
-                    Glide.with(this).load(data?.user_avatar)
+                    Glide.with(this).load(currentUser.photoUrl)
                         .apply(RequestOptions.bitmapTransform(BlurTransformation(10, 3)))
                         .into(iv_userPhotoBackground)
                 }

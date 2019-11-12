@@ -32,6 +32,11 @@ class RegisterActivity : AppCompatActivity() {
             val email = user_email.text.toString()
             val password = user_password.text.toString()
 
+            if (username.isEmpty()) user_usname.error = "Username tidak boleh kosong"
+            if (email.isEmpty()) user_email.error = "Email tidak boleh kosong"
+            if (password.isEmpty()) user_password.error = "Password tidak boleh kosong"
+            if (username.isEmpty() || email.isEmpty() || password.isEmpty()) return@setOnClickListener
+
             reg_block.visibility = View.VISIBLE
             reg_load.visibility = View.VISIBLE
 
@@ -42,13 +47,17 @@ class RegisterActivity : AppCompatActivity() {
                 auth.signInWithEmailAndPassword(email, password).addOnSuccessListener {
                     val currentUser = auth.currentUser
 
-                    val pic =
-                        hashMapOf("user_avatar" to "https://firebasestorage.googleapis.com/v0/b/budayaku-6298f.appspot.com/o/User%2Fdefault-profile.png?alt=media&token=06808e07-8e24-467c-9c91-0fd85f54b3e4")
+                    val data =
+                        hashMapOf(
+                            "user_avatar" to "https://firebasestorage.googleapis.com/v0/b/budayaku-6298f.appspot.com/o/User%2Fdefault-profile.png?alt=media&token=06808e07-8e24-467c-9c91-0fd85f54b3e4",
+                            "username" to username
+                        )
 
-                    firestore.collection("users").document(currentUser!!.uid).set(pic)
+                    firestore.collection("users").document(currentUser!!.uid).set(data)
 
-                    val profileUpdate =
-                        UserProfileChangeRequest.Builder().setDisplayName(username).build()
+                    val profileUpdate = UserProfileChangeRequest.Builder()
+                        .setDisplayName(username)
+                        .build()
 
                     currentUser.updateProfile(profileUpdate)
                         .addOnSuccessListener {

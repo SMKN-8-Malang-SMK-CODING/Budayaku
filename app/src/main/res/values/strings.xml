@@ -4,4 +4,14 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="link_register">di sini</string>
+
+    <string-array name="UserLocation">
+        <item>Jawa Timur</item>
+        <item>Jawa Tengah</item>
+        <item>Jawa Barat</item>
+        <item>Bali</item>
+        <item>Banten</item>
+        <item>Jakarta</item>
+        <item>Yogyakarta</item>
+    </string-array>
 </resources>

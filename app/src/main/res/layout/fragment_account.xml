@@ -1,64 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="24dp"
     tools:context=".fragments.AccountFragment">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="24dp">
+        android:id="@+id/show_user"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toStartOf="@+id/iv_setting"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/civ_account"
+            android:layout_width="70dp"
+            android:layout_height="70dp" />
 
         <LinearLayout
-            android:id="@+id/show_user"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/civ_account"
-                android:layout_width="70dp"
-                android:layout_height="70dp" />
-
-            <LinearLayout
+            <TextView
+                android:id="@+id/tv_userAccount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:ellipsize="end"
+                android:fontFamily="@font/open_sans_extrabold"
+                android:maxLines="1"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:textSize="20sp" />
 
-                <TextView
-                    android:id="@+id/tv_userAccount"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/open_sans_extrabold"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp"
-                    android:textSize="20sp" />
+            <TextView
+                android:id="@+id/tv_userLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans_light"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp" />
 
-                <TextView
-                    android:id="@+id/tv_userLocation"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/open_sans_light"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp" />
-
-            </LinearLayout>
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/tv_userLogout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/open_sans_semibold"
-            android:paddingTop="4dp"
-            android:paddingBottom="4dp"
-            android:text="Logout"
-            android:textSize="18sp" />
-
     </LinearLayout>
 
-</FrameLayout>
+    <ImageView
+        android:id="@+id/iv_setting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_settings_grey_36dp"
+        app:layout_constraintBottom_toBottomOf="@+id/show_user"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/show_user" />
+
+    <TextView
+        android:id="@+id/tv_userLogout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/open_sans_semibold"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:text="Logout"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@+id/show_user"
+        tools:layout_editor_absoluteX="24dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

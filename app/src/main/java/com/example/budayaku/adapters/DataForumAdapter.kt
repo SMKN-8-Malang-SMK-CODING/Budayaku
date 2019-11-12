@@ -4,11 +4,15 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.budayaku.R
 import com.example.budayaku.databases.DataForum
+import com.example.budayaku.databases.User
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.toObject
 import kotlinx.android.synthetic.main.list_data_forum.view.*
 
 class DataForumAdapter(private val context: Context) :
@@ -16,6 +20,7 @@ class DataForumAdapter(private val context: Context) :
 
     class Holder(val view: View) : RecyclerView.ViewHolder(view)
 
+    private val firestore = FirebaseFirestore.getInstance()
     private var list = ArrayList<DataForum>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
@@ -31,12 +36,19 @@ class DataForumAdapter(private val context: Context) :
     override fun getItemCount(): Int = list.size
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        holder.itemView.tv_forumUsername.text = list[position].username
-        holder.itemView.tv_forumTopik.text = list[position].topik
+        firestore.collection("users").document(list[position].user_id).get()
+            .addOnSuccessListener {
+                val user: User = it.toObject()!!
 
-        Glide.with(context).load(list[position].user_avatar)
-            .apply(RequestOptions())
-            .into(holder.itemView.civ_user)
+                holder.itemView.tv_forumUsername.text = user.username
+                Glide.with(context).load(user.user_avatar)
+                    .apply(RequestOptions())
+                    .into(holder.itemView.civ_user)
+            }.addOnFailureListener {
+                Toast.makeText(context, it.toString(), Toast.LENGTH_SHORT).show()
+            }
+
+        holder.itemView.tv_forumTopik.text = list[position].topik
 
         var date = ""
         val year = list[position].timestamp?.year.toString()

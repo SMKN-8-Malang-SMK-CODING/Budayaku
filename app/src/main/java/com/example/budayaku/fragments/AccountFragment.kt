@@ -15,6 +15,7 @@ import com.example.budayaku.R
 import com.example.budayaku.activities.AccountActivity
 import com.example.budayaku.activities.AccountNotFoundActivity
 import com.example.budayaku.activities.LoginActivity
+import com.example.budayaku.activities.SettingAccountActivity
 import com.example.budayaku.databases.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -60,12 +61,17 @@ class AccountFragment : Fragment() {
                 startActivity(Intent(activity, LoginActivity::class.java))
             }
         } else {
+            iv_setting.setOnClickListener {
+                val intent = Intent(activity, SettingAccountActivity::class.java)
+                startActivity(intent)
+            }
+
             FirebaseFirestore.getInstance().collection("users").document(currentUser!!.uid).get()
                 .addOnSuccessListener {
                     val data: User? = it.toObject(User::class.java)
                     tv_userAccount.text = currentUser!!.displayName
                     tv_userLocation.text = data?.location
-                    Glide.with(this).load(data?.user_avatar)
+                    Glide.with(this).load(currentUser!!.photoUrl)
                         .apply(RequestOptions())
                         .into(civ_account)
                 }

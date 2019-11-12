@@ -7,58 +7,61 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/civ_user"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="24dp"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_marginEnd="24dp"
         app:cardCornerRadius="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tv_forumUsername"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="24dp"
-        android:fontFamily="@font/open_sans_semibold"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/civ_user"
-        app:layout_constraintStart_toEndOf="@+id/civ_user"
-        app:layout_constraintTop_toTopOf="@+id/civ_user" />
-
-    <TextView
-        android:id="@+id/tv_forumDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:fontFamily="@font/open_sans"
-        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/civ_user" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_forumTopik" />
 
     <TextView
         android:id="@+id/tv_forumTopik"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="14dp"
         android:layout_marginEnd="24dp"
         android:ellipsize="end"
-        android:fontFamily="@font/open_sans"
-        android:maxLines="1"
+        android:fontFamily="@font/open_sans_semibold"
+        android:maxLines="5"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/civ_user"
-        app:layout_constraintTop_toBottomOf="@+id/tv_forumUsername" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_forumDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:fontFamily="@font/open_sans"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_forumUsername"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_forumUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/open_sans"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/civ_user"
+        app:layout_constraintEnd_toStartOf="@+id/civ_user"
+        app:layout_constraintTop_toTopOf="@+id/civ_user" />
 
     <View
         android:id="@+id/view"
         android:layout_width="0dp"
-        android:layout_height="0.2dp"
+        android:layout_height="0.5dp"
         android:layout_marginTop="14dp"
         android:background="#E0E0E0"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/tv_forumTopik"
-        app:layout_constraintStart_toStartOf="@+id/tv_forumTopik"
+        app:layout_constraintEnd_toEndOf="@+id/civ_user"
+        app:layout_constraintStart_toStartOf="@+id/tv_forumDate"
         app:layout_constraintTop_toBottomOf="@+id/civ_user" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -38,17 +38,9 @@ class LoginActivity : AppCompatActivity() {
                 val email = edt_emailLogin.text.toString()
                 val password = edt_passwordLogin.text.toString()
 
-                if (email.isEmpty()) {
-                    edt_emailLogin.error = "Email tidak boleh kosong"
-                }
-
-                if (password.isEmpty()) {
-                    edt_passwordLogin.error = "Password tidak boleh kosong"
-                }
-
-                if (email.isEmpty() || password.isEmpty()) {
-                    return@setOnClickListener
-                }
+                if (email.isEmpty()) edt_emailLogin.error = "Email tidak boleh kosong"
+                if (password.isEmpty()) edt_passwordLogin.error = "Password tidak boleh kosong"
+                if (email.isEmpty() || password.isEmpty()) return@setOnClickListener
 
                 iv_background.visibility = View.VISIBLE
                 loading_login.visibility = View.VISIBLE

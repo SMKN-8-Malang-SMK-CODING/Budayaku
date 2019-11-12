@@ -37,24 +37,20 @@ class AddDataForumActivity : AppCompatActivity() {
     }
 
     private fun storeData() {
-        val username = auth.currentUser?.displayName.toString()
+        val user_id = auth.currentUser?.uid.toString()
         val topik = et_topik.text.toString().trim()
         val deskripsi = et_deskripsi.text.toString().trim()
-        var user_avatar: String
 
         db.collection("users").document(auth.currentUser!!.uid).get()
             .addOnSuccessListener {
-                val data: DataForum? = it.toObject(DataForum::class.java)
-                user_avatar = data!!.user_avatar
 
                 if (topik.isNotEmpty() && deskripsi.isNotEmpty()) {
                     try {
                         firestore.collection("forum").add(
                             DataForum(
-                                username,
+                                user_id,
                                 topik,
-                                deskripsi,
-                                user_avatar
+                                deskripsi
                             )
                         ).addOnSuccessListener {
                             Toast.makeText(this, "Data berhasil ditambahkan", Toast.LENGTH_SHORT)
@@ -65,7 +61,7 @@ class AddDataForumActivity : AppCompatActivity() {
                             intent.flags =
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                             startActivity(intent)
-                        }.addOnFailureListener { exception: Exception ->
+                        }.addOnFailureListener { exception ->
                             Toast.makeText(this, exception.toString(), Toast.LENGTH_SHORT).show()
                         }
                     } catch (e: Exception) {
