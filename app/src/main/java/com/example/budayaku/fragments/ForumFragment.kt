@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -98,10 +99,19 @@ class ForumFragment : Fragment() {
     }
 
     private fun loadDataForum() {
-        firestore.collection("forum").orderBy("timestamp", Query.Direction.DESCENDING).get()
-            .addOnSuccessListener {
-                val item: List<DataForum> = it.toObjects(DataForum::class.java)
-                dataForumAdapter.setModule(item as ArrayList<DataForum>)
+        firestore.collection("forum").orderBy("timestamp", Query.Direction.DESCENDING)
+            .addSnapshotListener { _, error ->
+                if (error != null) {
+                    Toast.makeText(activity, "Error: ${error.message}", Toast.LENGTH_SHORT).show()
+                    return@addSnapshotListener
+                }
+
+                firestore.collection("forum").orderBy("timestamp", Query.Direction.DESCENDING).get()
+                    .addOnSuccessListener {
+                        val item: List<DataForum> = it.toObjects(DataForum::class.java)
+                        dataForumAdapter.setModule(item as ArrayList<DataForum>)
+                    }
             }
+
     }
 }
