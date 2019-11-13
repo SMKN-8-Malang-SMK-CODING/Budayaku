@@ -1,13 +1,11 @@
 package com.example.budayaku.activities
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.budayaku.R
 import com.example.budayaku.databases.DataForum
-import com.example.budayaku.fragments.ForumFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
@@ -57,10 +55,7 @@ class AddDataForumActivity : AppCompatActivity() {
                                 .show()
                             load_addDataForum.visibility = View.GONE
                             loadBack_addDataForum.visibility = View.GONE
-                            val intent = Intent(this, ForumFragment::class.java)
-                            intent.flags =
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                            startActivity(intent)
+                            onBackPressed()
                         }.addOnFailureListener { exception ->
                             Toast.makeText(this, exception.toString(), Toast.LENGTH_SHORT).show()
                         }

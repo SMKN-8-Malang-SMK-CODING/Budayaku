@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,6 +17,7 @@ import com.example.budayaku.activities.AddDataForumActivity
 import com.example.budayaku.activities.LoginActivity
 import com.example.budayaku.adapters.DataForumAdapter
 import com.example.budayaku.databases.DataForum
+import com.example.budayaku.utils.StringSimilarity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.Query
@@ -32,6 +34,8 @@ class ForumFragment : Fragment() {
     private var currentUser: FirebaseUser? = null
     private val firestore = Firebase.firestore
     private lateinit var dataForumAdapter: DataForumAdapter
+
+    private val listForum = ArrayList<DataForum>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -81,24 +85,56 @@ class ForumFragment : Fragment() {
                 isNestedScrollingEnabled = false
             }
 
-//            FirebaseFirestore.getInstance().collection("users").document(currentUser!!.uid).get()
-//                .addOnSuccessListener {
-//                    val data: User? = it.toObject(User::class.java)
-//                    tv_forumUsername.text = data?.name
-//                    tv_forumUsername2.text = data?.name
-//                    Glide.with(this).load(data?.user_avatar)
-//                        .apply(RequestOptions())
-//                        .into(civ_user)
-//                    Glide.with(this).load(data?.user_avatar)
-//                        .apply(RequestOptions())
-//                        .into(civ_user2)
-//                }
+            sv_forum.apply {
+                setOnSearchClickListener {
+                    tv_forum.visibility = View.GONE
+                }
 
-            loadDataForum()
+                setOnCloseListener {
+                    tv_forum.visibility = View.VISIBLE
+                    loadDataForum(true)
+                    false
+                }
+
+                setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                    override fun onQueryTextSubmit(query: String?): Boolean {
+                        searchForum(query!!)
+                        return false
+                    }
+
+                    override fun onQueryTextChange(newText: String?): Boolean {
+//                        Toast.makeText(context, "change : $newText", Toast.LENGTH_SHORT).show()
+                        searchForum(newText!!)
+                        return false
+                    }
+
+                })
+            }
+
+            loadDataForum(true)
         }
     }
 
-    private fun loadDataForum() {
+    private fun searchForum(query: String) {
+        if (listForum.size <= 0) {
+            loadDataForum(false, query)
+            return
+        }
+
+        val matchedForum = ArrayList<DataForum>()
+
+        for (forum in listForum) {
+            val score = StringSimilarity.similarity(forum.topik, query)
+
+            if (score >= 0.25f) {
+                matchedForum.add(forum)
+            }
+        }
+
+        dataForumAdapter.setModule(matchedForum)
+    }
+
+    private fun loadDataForum(firstLoad: Boolean = false, query: String = "") {
         firestore.collection("forum").orderBy("timestamp", Query.Direction.DESCENDING)
             .addSnapshotListener { _, error ->
                 if (error != null) {
@@ -108,10 +144,15 @@ class ForumFragment : Fragment() {
 
                 firestore.collection("forum").orderBy("timestamp", Query.Direction.DESCENDING).get()
                     .addOnSuccessListener {
-                        val item: List<DataForum> = it.toObjects(DataForum::class.java)
-                        dataForumAdapter.setModule(item as ArrayList<DataForum>)
+                        listForum.clear()
+                        listForum.addAll(it.toObjects(DataForum::class.java))
+
+                        if (firstLoad) {
+                            dataForumAdapter.setModule(listForum)
+                        } else {
+                            searchForum(query)
+                        }
                     }
             }
-
     }
 }
