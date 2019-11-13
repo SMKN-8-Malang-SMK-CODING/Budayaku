@@ -10,7 +10,6 @@
         android:id="@+id/tv_forum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/open_sans_extrabold"
         android:text="Forum Diskusi"
@@ -37,7 +36,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:clickable="true"
-        android:src="@drawable/ic_add_white_36dp"
+        android:src="@drawable/ic_edit_white_36dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

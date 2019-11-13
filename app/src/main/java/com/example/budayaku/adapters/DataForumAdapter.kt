@@ -1,6 +1,7 @@
 package com.example.budayaku.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.budayaku.R
+import com.example.budayaku.activities.DetailForumActivity
 import com.example.budayaku.databases.DataForum
 import com.example.budayaku.databases.User
 import com.google.firebase.firestore.FirebaseFirestore
@@ -58,6 +60,12 @@ class DataForumAdapter(private val context: Context) :
         date += year.substring(year.length - 2)
 
         holder.itemView.tv_forumDate.text = date
+
+        holder.itemView.setOnClickListener {
+            val intent = Intent(context, DetailForumActivity::class.java)
+            intent.putExtra("topik", list[position].topik)
+            context.startActivity(intent)
+        }
     }
 
     fun setModule(item: ArrayList<DataForum>) {
