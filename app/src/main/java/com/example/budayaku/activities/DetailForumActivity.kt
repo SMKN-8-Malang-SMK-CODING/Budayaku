@@ -2,14 +2,19 @@ package com.example.budayaku.activities
 
 import android.os.Bundle
 import android.util.Log
-import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.budayaku.R
+import com.example.budayaku.adapters.CommentForumAdapter
+import com.example.budayaku.databases.DataCommentForum
 import com.example.budayaku.databases.DataForum
 import com.example.budayaku.databases.User
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
@@ -19,6 +24,12 @@ class DetailForumActivity : AppCompatActivity() {
 
     private val firestore = Firebase.firestore
     private val db = FirebaseFirestore.getInstance()
+    private val auth = FirebaseAuth.getInstance()
+    private lateinit var commentForumAdapter: CommentForumAdapter
+
+    private val listComment = ArrayList<DataCommentForum>()
+
+    private val currentUser = auth.currentUser
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,11 +44,13 @@ class DetailForumActivity : AppCompatActivity() {
                 val document = it.toObjects(DataForum::class.java)[0]
 
                 if (document != null) {
-                    iv_backgroundDetailForum.visibility = View.GONE
-                    load_detailForum.visibility = View.GONE
 
                     tv_topikDetail.text = document.topik
                     tv_deskripsiDetail.text = document.deskripsi
+
+                    Glide.with(this).load(currentUser?.photoUrl)
+                        .apply(RequestOptions())
+                        .into(civ_userComment)
 
                     var date = ""
                     val year = document.timestamp?.year.toString()
@@ -58,25 +71,79 @@ class DetailForumActivity : AppCompatActivity() {
                                 .apply(RequestOptions())
                                 .into(civ_photoUserForumDetail)
                         }.addOnFailureListener { exception ->
-                            iv_backgroundDetailForum.visibility = View.GONE
-                            load_detailForum.visibility = View.GONE
 
                             Log.d("errordb", "get failed with ", exception)
                         }
                 } else {
-                    iv_backgroundDetailForum.visibility = View.GONE
-                    load_detailForum.visibility = View.GONE
-
                     Log.d("notexist", "No such document")
                 }
             }
             .addOnFailureListener { exception ->
-                iv_backgroundDetailForum.visibility = View.GONE
-                load_detailForum.visibility = View.GONE
-
                 Log.d("errordb", "get failed with ", exception)
             }
 
+        commentForumAdapter = CommentForumAdapter(this)
+
+        rv_commentDetailForum.apply {
+            layoutManager = LinearLayoutManager(
+                context,
+                LinearLayoutManager.VERTICAL,
+                false
+            )
+            setHasFixedSize(true)
+
+            adapter = commentForumAdapter
+            isNestedScrollingEnabled = false
+        }
+
+        loadDataComment()
+
         back_detailForum.setOnClickListener { onBackPressed() }
+
+        fab_sendComment.setOnClickListener {
+            sendComment()
+        }
+    }
+
+    private fun loadDataComment() {
+        val topik = intent.getStringExtra("topik")
+
+        firestore.collection("comments")
+            .whereEqualTo("topik", topik)
+            .orderBy("timestamp", Query.Direction.DESCENDING)
+            .addSnapshotListener { _, error ->
+                if (error != null) {
+                    Toast.makeText(this, "Error: ${error.message}", Toast.LENGTH_SHORT).show()
+                    return@addSnapshotListener
+                }
+
+                firestore.collection("comments")
+                    .whereEqualTo("topik", topik)
+                    .orderBy("timestamp", Query.Direction.DESCENDING)
+                    .get()
+                    .addOnSuccessListener {
+                        listComment.clear()
+                        listComment.addAll(it.toObjects(DataCommentForum::class.java))
+
+                        commentForumAdapter.setModule(listComment)
+                    }
+            }
+    }
+
+    private fun sendComment() {
+        val message = et_messageComment.text.toString().trim()
+        val topik = intent.getStringExtra("topik")
+
+        if (message.isNotEmpty()) {
+            firestore.collection("comments").add(
+                DataCommentForum(
+                    currentUser!!.uid,
+                    topik!!,
+                    message
+                )
+            ).addOnSuccessListener {
+                et_messageComment.setText("")
+            }
+        }
     }
 }

@@ -5,10 +5,10 @@
         android:width="4dp"
         android:color="#fff" />
     <solid android:color="#fff" />
-    <corners android:radius="360dp" />
-    <padding
-        android:bottom="10dp"
-        android:left="16dp"
-        android:right="16dp"
-        android:top="10dp" />
+    <corners android:radius="100dp" />
+    <!--    <padding-->
+    <!--        android:bottom="10dp"-->
+    <!--        android:left="16dp"-->
+    <!--        android:right="16dp"-->
+    <!--        android:top="10dp" />-->
 </shape>

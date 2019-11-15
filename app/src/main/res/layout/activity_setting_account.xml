@@ -102,7 +102,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:entries="@array/UserLocation"
         app:layout_constraintBottom_toBottomOf="@+id/iv_setLocation"
         app:layout_constraintStart_toEndOf="@+id/iv_setLocation"
         app:layout_constraintTop_toTopOf="@+id/iv_setLocation" />
@@ -116,7 +115,7 @@
         android:layout_marginBottom="16dp"
         android:background="@drawable/rounded_corner_accent"
         android:fontFamily="@font/open_sans_bold"
-        android:text="Submit"
+        android:text="Ganti"
         android:textColor="@android:color/white"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"

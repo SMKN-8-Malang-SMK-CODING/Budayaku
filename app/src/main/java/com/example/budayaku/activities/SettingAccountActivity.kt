@@ -6,16 +6,20 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.budayaku.MainActivity
 import com.example.budayaku.R
+import com.example.budayaku.databases.Module
 import com.example.budayaku.databases.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import kotlinx.android.synthetic.main.activity_setting_account.*
@@ -27,6 +31,10 @@ class SettingAccountActivity : AppCompatActivity() {
     private var filePath: Uri? = null
     private val db = FirebaseFirestore.getInstance()
     private val storage = Firebase.storage.reference
+
+    private val listDaerah = ArrayList<String>()
+
+    private var selectedDaerah: String = ""
 
     val currentUser = FirebaseAuth.getInstance().currentUser
     var default =
@@ -53,12 +61,55 @@ class SettingAccountActivity : AppCompatActivity() {
         btn_setAccount.setOnClickListener {
             updateUserProfile()
         }
+
+        showListDaerah()
+    }
+
+    private fun showListDaerah() {
+        db.collection("daerah").orderBy("name").get()
+            .addOnSuccessListener {
+                for (doc in it.documents) {
+                    val daerah: Module = doc.toObject()!!
+
+                    listDaerah.add(daerah.name)
+                }
+
+                selectedDaerah = listDaerah[0]
+
+                setupDaerahSpinner()
+            }
+    }
+
+    private fun setupDaerahSpinner() {
+        val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, listDaerah)
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+        sp_setLocation.apply {
+            adapter = arrayAdapter
+
+            onItemSelectedListener =
+                object : AdapterView.OnItemSelectedListener {
+                    override fun onNothingSelected(p0: AdapterView<*>?) {
+
+                    }
+
+                    override fun onItemSelected(
+                        parent: AdapterView<*>?,
+                        view: View?,
+                        position: Int,
+                        id: Long
+                    ) {
+                        selectedDaerah = listDaerah[position]
+                    }
+
+                }
+        }
     }
 
     private fun updateUserProfile() {
         val username = et_setUsername.text.toString()
         val phone = et_setPhone.text.toString()
-        val location = sp_setLocation.selectedItem.toString()
+        val location = selectedDaerah
 
         if (username.isEmpty()) et_setUsername.error = "Username tidak boleh kosong"
         if (phone.isEmpty()) et_setPhone.error = "No. Telpon tidak boleh kosong"
@@ -98,6 +149,9 @@ class SettingAccountActivity : AppCompatActivity() {
                                     Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                 startActivity(intent)
                             }.addOnFailureListener { e ->
+                                set_block.visibility = View.GONE
+                                set_load.visibility = View.GONE
+
                                 Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show()
                             }
                     }

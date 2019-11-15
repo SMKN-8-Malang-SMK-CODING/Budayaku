@@ -13,7 +13,6 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.budayaku.R
 import com.example.budayaku.activities.AccountActivity
-import com.example.budayaku.activities.AccountNotFoundActivity
 import com.example.budayaku.activities.LoginActivity
 import com.example.budayaku.activities.SettingAccountActivity
 import com.example.budayaku.databases.User
@@ -77,11 +76,7 @@ class AccountFragment : Fragment() {
                 }
 
             show_user.setOnClickListener {
-                if (currentUser != null) {
-                    startActivity(Intent(activity, AccountActivity::class.java))
-                } else {
-                    startActivity(Intent(activity, AccountNotFoundActivity::class.java))
-                }
+                startActivity(Intent(activity, AccountActivity::class.java))
             }
 
             tv_userLogout.setOnClickListener {

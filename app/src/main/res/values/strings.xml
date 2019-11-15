@@ -6,11 +6,13 @@
     <string name="link_register">di sini</string>
 
     <string-array name="UserLocation">
+        <item>Bali</item>
+        <item>Banten</item>
+        <item>Bengkulu</item>
+        <item>DI Yogyakarta</item>
         <item>Jawa Timur</item>
         <item>Jawa Tengah</item>
         <item>Jawa Barat</item>
-        <item>Bali</item>
-        <item>Banten</item>
         <item>Jakarta</item>
         <item>Yogyakarta</item>
     </string-array>

@@ -57,12 +57,18 @@ class AddDataForumActivity : AppCompatActivity() {
                             loadBack_addDataForum.visibility = View.GONE
                             onBackPressed()
                         }.addOnFailureListener { exception ->
+                            load_addDataForum.visibility = View.GONE
+                            loadBack_addDataForum.visibility = View.GONE
                             Toast.makeText(this, exception.toString(), Toast.LENGTH_SHORT).show()
                         }
                     } catch (e: Exception) {
+                        load_addDataForum.visibility = View.GONE
+                        loadBack_addDataForum.visibility = View.GONE
                         Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show()
                     }
                 } else {
+                    load_addDataForum.visibility = View.GONE
+                    loadBack_addDataForum.visibility = View.GONE
                     Toast.makeText(this, "Semua harus diisi", Toast.LENGTH_SHORT).show()
                 }
             }
