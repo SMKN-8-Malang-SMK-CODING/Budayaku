@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
 
         vp_container.apply {
             adapter = fragmentAdapter
-            offscreenPageLimit = 4
+            offscreenPageLimit = 5
             currentItem = 0
         }
 

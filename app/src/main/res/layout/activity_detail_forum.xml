@@ -7,6 +7,7 @@
     tools:context=".activities.DetailForumActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/white"
@@ -41,12 +42,15 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cl_top"
+        android:layout_alignBottom="@+id/cl_bottom"
+        android:background="@drawable/background_comment">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginBottom="70dp"
             android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -118,6 +122,28 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmer_comment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <include layout="@layout/shimmer_comment"/>
+
+                    <include layout="@layout/shimmer_comment"/>
+
+                    <include layout="@layout/shimmer_comment"/>
+
+                    <include layout="@layout/shimmer_comment"/>
+
+                    <include layout="@layout/shimmer_comment"/>
+                </LinearLayout>
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_commentDetailForum"
                 android:layout_width="match_parent"
@@ -125,14 +151,25 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp" />
 
+            <TextView
+                android:id="@+id/tv_noDataComment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="64dp"
+                android:fontFamily="@font/open_sans"
+                android:textColor="@android:color/white"
+                android:gravity="center"
+                android:text="Jadilah yang pertama memberi komentar !"
+                android:visibility="gone" />
+
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@android:color/white"
         android:paddingTop="4dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -143,7 +180,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/less_rounded_border_main"
-            android:elevation="4dp"
+            android:elevation="3dp"
             android:orientation="horizontal"
             android:paddingTop="2dp"
             android:paddingBottom="2dp"

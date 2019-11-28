@@ -39,11 +39,11 @@ dependencies {
     implementation 'com.android.support:cardview-v7:29.0.0'
 
     // Firebase
-    implementation 'com.google.firebase:firebase-firestore-ktx:21.2.1'
+    implementation 'com.google.firebase:firebase-firestore-ktx:21.3.0'
     implementation 'com.google.firebase:firebase-storage-ktx:19.1.0'
     implementation 'com.google.firebase:firebase-auth:19.1.0'
     implementation 'com.google.firebase:firebase-core:17.2.1'
-    implementation 'com.google.firebase:firebase-firestore:21.2.1'
+    implementation 'com.google.firebase:firebase-firestore:21.3.0'
 
     // Circle image view
     implementation 'de.hdodenhof:circleimageview:3.0.1'
@@ -54,4 +54,7 @@ dependencies {
 
     // Blur Transformation
     implementation 'jp.wasabeef:glide-transformations:4.0.0'
+
+    // Shimmer
+    implementation 'com.facebook.shimmer:shimmer:0.4.0'
 }

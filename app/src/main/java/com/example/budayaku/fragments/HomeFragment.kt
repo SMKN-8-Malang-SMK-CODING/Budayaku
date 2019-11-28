@@ -12,6 +12,7 @@ import com.example.budayaku.adapters.Adapter
 import com.example.budayaku.adapters.ModuleAdapter
 import com.example.budayaku.databases.ModulPopular
 import com.example.budayaku.databases.Module
+import com.example.budayaku.utils.ShimmerHelper
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -66,6 +67,7 @@ class HomeFragment : Fragment() {
     private fun loadModuleData() {
         firestore.collection("daerah").orderBy("id_daerah").get()
             .addOnSuccessListener {
+                ShimmerHelper.StopShimmer(shimmer_modul)
                 val daerah: List<Module> = it.toObjects(Module::class.java)
                 moduleAdapter.setModul(daerah as ArrayList<Module>)
                 loading_modul.visibility = View.GONE

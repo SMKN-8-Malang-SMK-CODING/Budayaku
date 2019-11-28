@@ -6,4 +6,5 @@
     <color name="colorBackground">#FFF</color>
     <color name="colorLightBlue">#8E9B9C</color>
     <color name="colorBackgroundTransparent">#CCFFFFFF</color>
+    <color name="shimmer_light_gray">#CFCFCF</color>
 </resources>

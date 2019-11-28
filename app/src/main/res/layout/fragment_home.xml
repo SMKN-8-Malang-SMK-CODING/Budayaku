@@ -86,6 +86,23 @@
             app:layout_constraintStart_toEndOf="@+id/imgBudaya"
             app:layout_constraintTop_toTopOf="@+id/imgBudaya" />
 
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_modul"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/budayaku">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <include layout="@layout/shimmer_modul"/>
+
+                <include layout="@layout/shimmer_modul"/>
+            </LinearLayout>
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_itemModul"
             android:layout_width="match_parent"

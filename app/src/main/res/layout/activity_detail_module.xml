@@ -63,52 +63,96 @@
             android:layout_marginTop="64dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/rounded_border"
-            android:fontFamily="@font/open_sans_extrabold"
+            android:fontFamily="@font/open_sans_semibold"
             android:gravity="start|center_vertical"
+            android:paddingStart="42dp"
             android:text="Senjata Adat"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_modulDetail" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:elevation="2dp"
+            android:src="@drawable/ic_navigate_next_accent_36dp"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_senjata"
+            app:layout_constraintStart_toStartOf="@+id/btn_senjata"
+            app:layout_constraintTop_toTopOf="@+id/btn_senjata" />
 
         <Button
             android:id="@+id/btn_rumah"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:paddingStart="42dp"
             android:background="@drawable/rounded_border"
-            android:fontFamily="@font/open_sans_extrabold"
+            android:fontFamily="@font/open_sans_semibold"
             android:gravity="start|center_vertical"
             android:text="Rumah Adat"
             app:layout_constraintEnd_toEndOf="@+id/btn_senjata"
             app:layout_constraintStart_toStartOf="@+id/btn_senjata"
             app:layout_constraintTop_toBottomOf="@+id/btn_senjata" />
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:elevation="2dp"
+            android:src="@drawable/ic_navigate_next_accent_36dp"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_rumah"
+            app:layout_constraintStart_toStartOf="@+id/btn_rumah"
+            app:layout_constraintTop_toTopOf="@+id/btn_rumah" />
+
         <Button
             android:id="@+id/btn_tarian"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:paddingStart="42dp"
             android:background="@drawable/rounded_border"
-            android:fontFamily="@font/open_sans_extrabold"
+            android:fontFamily="@font/open_sans_semibold"
             android:gravity="start|center_vertical"
             android:text="Tarian Adat"
             app:layout_constraintEnd_toEndOf="@+id/btn_rumah"
             app:layout_constraintStart_toStartOf="@+id/btn_rumah"
             app:layout_constraintTop_toBottomOf="@+id/btn_rumah" />
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:elevation="2dp"
+            android:src="@drawable/ic_navigate_next_accent_36dp"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_tarian"
+            app:layout_constraintStart_toStartOf="@+id/btn_tarian"
+            app:layout_constraintTop_toTopOf="@+id/btn_tarian" />
+
         <Button
             android:id="@+id/btn_pakaian"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="8dp"
+            android:paddingStart="42dp"
             android:background="@drawable/rounded_border"
-            android:fontFamily="@font/open_sans_extrabold"
+            android:fontFamily="@font/open_sans_semibold"
             android:gravity="start|center_vertical"
             android:text="Pakaian Adat"
             app:layout_constraintEnd_toEndOf="@+id/btn_tarian"
             app:layout_constraintStart_toStartOf="@+id/btn_tarian"
             app:layout_constraintTop_toBottomOf="@+id/btn_tarian" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:elevation="2dp"
+            android:src="@drawable/ic_navigate_next_accent_36dp"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_pakaian"
+            app:layout_constraintStart_toStartOf="@+id/btn_pakaian"
+            app:layout_constraintTop_toTopOf="@+id/btn_pakaian" />
 
         <ImageView
             android:id="@+id/iv_back"

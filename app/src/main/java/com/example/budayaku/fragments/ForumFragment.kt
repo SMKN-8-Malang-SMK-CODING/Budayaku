@@ -115,6 +115,14 @@ class ForumFragment : Fragment() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        if (currentUser != null) {
+            loadDataForum(true)
+        }
+    }
+
     private fun searchForum(query: String) {
         if (listForum.size <= 0) {
             loadDataForum(false, query)

@@ -2,6 +2,7 @@ package com.example.budayaku.activities
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,6 +13,7 @@ import com.example.budayaku.adapters.CommentForumAdapter
 import com.example.budayaku.databases.DataCommentForum
 import com.example.budayaku.databases.DataForum
 import com.example.budayaku.databases.User
+import com.example.budayaku.utils.ShimmerHelper
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
@@ -122,10 +124,17 @@ class DetailForumActivity : AppCompatActivity() {
                     .orderBy("timestamp", Query.Direction.DESCENDING)
                     .get()
                     .addOnSuccessListener {
+                        ShimmerHelper.StopShimmer(shimmer_comment)
                         listComment.clear()
                         listComment.addAll(it.toObjects(DataCommentForum::class.java))
 
                         commentForumAdapter.setModule(listComment)
+
+                        if (it.size() > 0) {
+                            tv_noDataComment.visibility = View.GONE
+                        } else {
+                            tv_noDataComment.visibility = View.VISIBLE
+                        }
                     }
             }
     }
@@ -134,6 +143,8 @@ class DetailForumActivity : AppCompatActivity() {
         val message = et_messageComment.text.toString().trim()
         val topik = intent.getStringExtra("topik")
 
+        et_messageComment.setText("")
+
         if (message.isNotEmpty()) {
             firestore.collection("comments").add(
                 DataCommentForum(
@@ -141,9 +152,7 @@ class DetailForumActivity : AppCompatActivity() {
                     topik!!,
                     message
                 )
-            ).addOnSuccessListener {
-                et_messageComment.setText("")
-            }
+            )
         }
     }
 }
